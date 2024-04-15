@@ -1,2 +1,4 @@
 flask
 pycryptodome
+pytest
+coverage
