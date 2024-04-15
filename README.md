@@ -8,4 +8,5 @@ Yet Another Python Project in the university.
 2. `pip -m venv .venv`
 3. `source .venv/bin/activate`
 4. `pip -r requirements.txt`
-
+5. `flask run`
+6. Visit `http://localhost:5000/`.
