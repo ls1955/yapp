@@ -1,7 +1,6 @@
-
-m Crypto.PublicKey import RSA
-from Crypto.Cipher import PKCS1_OAEP
 import binascii
+from Crypto.PublicKey import RSA
+from Crypto.Cipher import PKCS1_OAEP
 
 # Generate RSA keys
 key = RSA.generate(2048)
