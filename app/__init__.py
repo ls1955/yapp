@@ -22,4 +22,9 @@ def create_app(test_config=None):
     def goodbye():
         return "Goodbye, world."
     
+
+    from . import db
+    db.init_app(app)
+
     return app
+
