@@ -13,6 +13,22 @@ def get_db():
         g.db.row_factory = sqlite3.Row
     return g.db
 
+
+def init_db():
+    db = get_db()
+
+    with current_app.open_resource("schema.sql") as f:
+        db.execute_script(f.read().decode("utf8"))
+
+
+@click.command("init-db")
+@with_appcontext
+def init_db_command():
+    """Clear and rebuild the database."""
+    init_db()
+    click.echo("Re-initialized the database.")
+
+
 def close_db(e=None):
     db = g.pop("db", None)
 
