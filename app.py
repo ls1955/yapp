@@ -27,7 +27,3 @@ def create_user():
         return render_template("user_form.html", request=request)
     flash("Successful created user.", "info")
     return render_template("user_form.html")
-
-@app.route("/about")
-def about():
-    return "<p>Made with love by Sheng1955</p>"
