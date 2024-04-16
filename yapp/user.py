@@ -43,7 +43,7 @@ def sign_up():
             db.commit()
             flash("Successful created user", "notice")
             return redirect(url_for("index"))
-    return render_template("user/create.html")
+    return render_template("user/sign-up.html")
 
 
 @bp.route("/sign-in", methods=("GET", "POST"))
