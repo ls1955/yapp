@@ -2,6 +2,10 @@
 
 {% block content %}
     <table>
+        <tr>
+            <th>Users</th>
+        </tr>
+
         {% for user in users %}
             <tr>
                 <td>{{ user["name"] }}</td>
