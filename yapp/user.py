@@ -22,12 +22,16 @@ def create():
         username = request.form["username"]
         password = request.form["password"]
         password_confirmation = request.form["password_confirmation"]
+        encrypt_option = request.form["encrypt_option"]
+
+        db = get_db()
 
         if password != password_confirmation:
             flash("Password should be equal to password confirmation", "error")
+        elif db.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone():
+            flash("Username already exist.", "error")
         else:
             # TODO: Encrypt password according to encrypt option
-            db = get_db()
             db.execute(
                 "INSERT INTO users (name, username, password, encrypted_password)"
                 "VALUES (?, ?, ?, ?)",
