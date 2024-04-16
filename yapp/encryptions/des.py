@@ -1,9 +1,6 @@
-import binascii
+from os import path
 from Crypto.Cipher import DES
 from Crypto.Random import get_random_bytes
-
-with open("../.keys/des-key", "rb") as f:
-    key = f.read()
 
 def pad(string):
     # QUESTION: What is the purpose of this function?
@@ -11,6 +8,9 @@ def pad(string):
 
 
 def des_encrypt(plaintext):
+    base_path = path.dirname(__file__)
+    with open(path.abspath(path.join(base_path, "..", ".keys", "des-key")), "rb") as f:
+        key = f.read()
     encrypter = DES.new(key, DES.MODE_ECB)
     return encrypter.encrypt(pad(plaintext).encode())
 
@@ -21,6 +21,9 @@ def unpad(string):
 
 
 def des_decrypt(ciphertext):
+    base_path = path.dirname(__file__)
+    with open(path.abspath(path.join(base_path, "..", ".keys", "des-key")), "rb") as f:
+        key = f.read()
     decrypter = DES.new(key, DES.MODE_ECB)
     return unpad(decrypter.decrypt(ciphertext).decode())
 

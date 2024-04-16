@@ -1,9 +1,6 @@
-import binascii
+from os import path
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
-
-with open("../.keys/aes-key", "rb") as f:
-    key = f.read()
 
 def pad(string):
     # QUESTION: What is the purpose of this function?
@@ -11,6 +8,9 @@ def pad(string):
 
 
 def aes_encrypt(plaintext):
+    base_path = path.dirname(__file__)
+    with open(path.abspath(path.join(base_path, "..", ".keys", "aes-key")), "rb") as f:
+        key = f.read()
     encrypter = AES.new(key, AES.MODE_ECB)
     return encrypter.encrypt(pad(plaintext).encode())
 
@@ -21,6 +21,9 @@ def unpad(string):
 
 
 def aes_decrypt(ciphertext):
+    base_path = path.dirname(__file__)
+    with open(path.abspath(path.join(base_path, "..", ".keys", "aes-key")), "rb") as f:
+        key = f.read()
     decrypter = AES.new(key, AES.MODE_ECB)
     return unpad(decrypter.decrypt(ciphertext).decode())
 
