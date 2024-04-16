@@ -6,10 +6,12 @@
             <th>Users</th>
         </tr>
 
-        {% for user in users %}
+        <tbody>
             <tr>
-                <td>{{ user["name"] }}</td>
+                {% for user in users %}
+                    <tr><td>{{ user["name"] }}</tr>
+                {% endfor %}
             </tr>
-        {% endfor %}
+        </tbody>
     </table>
 {% endblock %}
