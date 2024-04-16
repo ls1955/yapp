@@ -51,13 +51,13 @@ def sign_in():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        decrypt_option = request.form["decrypt_option"]
+        encrypt_option = request.form["encrypt_option"]
 
         db = get_db()
         user = db.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone()
         if not user:
             flash("Username does not exist", "error")
-        elif user["encrypted_password"] != str(binascii.hexlify(encrypt_with_option(password, decrypt_option))):
+        elif user["encrypted_password"] != str(binascii.hexlify(encrypt_with_option(password, encrypt_option))):
             flash("Incorrect password")
         else:
             flash("Successful sign in", "notice")
