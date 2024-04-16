@@ -9,5 +9,8 @@ bp = Blueprint("user", __name__)
 
 @bp.route("/")
 def index():
-    return "Goodbye, world."
+    db = get_db()
+    users = db.execute("SELECT name FROM users")
+
+    return render_template("user/index.html", users=users)
 
