@@ -12,4 +12,6 @@ Yet Another Python Project in the university.
 
 ## TODOs
 
+- Write tests
 - Automated scripts to measure performance and accuracy
+- Actually signed in user and show user specific content? (Mess with session cookie)
