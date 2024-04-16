@@ -2,8 +2,8 @@ import binascii
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
 
-# Create an AES object with a key
-key = get_random_bytes(16)  # AES key sizes are 16 (AES-128), 24 (AES-192), or 32 (AES-256) bytes
+with open("../.keys/aes-key", "rb") as f:
+    key = f.read()
 cipher = AES.new(key, AES.MODE_ECB)
 
 # Encrypt a message

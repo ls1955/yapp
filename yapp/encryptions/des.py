@@ -2,8 +2,8 @@ import binascii
 from Crypto.Cipher import DES
 from Crypto.Random import get_random_bytes
 
-# Create a DES object with a key
-key = get_random_bytes(8)  # DES key must be 8 bytes
+with open("../.keys/des-key", "rb") as f:
+    key = f.read()
 cipher = DES.new(key, DES.MODE_ECB)
 
 # Encrypt a message
