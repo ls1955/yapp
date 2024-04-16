@@ -12,6 +12,4 @@ Yet Another Python Project in the university.
 
 ## TODOs
 
-- Read generated keys
 - Automated scripts to measure performance and accuracy
-
