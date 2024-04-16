@@ -4,9 +4,14 @@ Yet Another Python Project in the university.
 
 ## Getting Started
 
+### Linux
+
 1. Clone and navigate to this repo.
 2. `python3 -m venv .venv`
 3. `source .venv/bin/activate`
-4. `pip -r requirements.txt`
-5. `flask run --debug`
-6. Visit `http://localhost:5000/`.
+4. `pip install -r requirements.txt`
+5. `echo "export FLASK_APP='yapp'" >> ~/.bashrc`
+6. `echo "export FLASK_ENV='development'" >> ~/.bashrc`
+7. `source .bashrc`
+8. `flask run --debug`
+9. Visit `http://localhost:5000/`.
