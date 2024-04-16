@@ -21,7 +21,7 @@ def init_keys_command():
         click.echo("Generated DES key.")
     with open("./yapp/.keys/rsa-key", "wb") as f:
         f.write(RSA.generate(2048).publickey().exportKey(format="DER"))
-        click.echo("Generated RSA key")
+        click.echo("Generated RSA key.")
 
 
 def init_app(app):
