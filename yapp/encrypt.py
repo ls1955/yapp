@@ -9,17 +9,17 @@ from Crypto.PublicKey import RSA
 @click.command("init-keys")
 def init_keys_command():
     try:
-        os.makedirs(".keys")
+        os.makedirs("./yapp/.keys")
     except OSError:
         pass
     
-    with open(".keys/aes-key", "wb") as f:
+    with open("./yapp/.keys/aes-key", "wb") as f:
         f.write(get_random_bytes(16))
         click.echo("Generated AES key.")
-    with open(".keys/des-key", "wb") as f:
+    with open("./yapp/.keys/des-key", "wb") as f:
         f.write(get_random_bytes(8))
         click.echo("Generated DES key.")
-    with open(".keys/rsa-key", "wb") as f:
+    with open("./yapp/.keys/rsa-key", "wb") as f:
         f.write(RSA.generate(2048).publickey().exportKey(format="DER"))
         click.echo("Generated RSA key")
 
