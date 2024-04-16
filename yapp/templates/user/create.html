@@ -38,19 +38,11 @@
 
     <div class="field">
         <select name="encrypt_option" required>
-            {% if not request.form['encrypt_option'] or request.form['encrypt_option'] == 'aes' %}
-              <option value="aes" selected>AES</option>
-              <option value="des">DES</option>
-              <option value="rsa">RASA</option>
-            {% elif request.form['encrypt_option'] == 'des' %}
-              <option value="aes">AES</option>
-              <option value="des" selected>DES</option>
-              <option value="rsa">RASA</option>
-            {% else %}
-              <option value="aes">AES</option>
-              <option value="des">DES</option>
-              <option value="rsa" selected>RASA</option>
-            {% endif %}
+            <option value="aes" {{ 'selected' if not request.form['encrypt_option'] or request.form['encrypt_option'] == 'aes' }}>
+              AES
+            </option>
+            <option value="des" {{ 'selected' if request.form['encrypt_option'] == 'des' }}>DES</option>
+            <option value="rsa" {{ 'selected' if request.form['encrypt_option'] == 'rsa' }}>RASA</option>
         </select>
     </div>
 
