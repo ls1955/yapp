@@ -5,7 +5,7 @@ from werkzeug.exceptions import abort
 import binascii
 
 from yapp.db import get_db
-from yapp.encrypt import encrypt_with_option
+from yapp.encrypt import encrypt_with_option, decrypt_with_option
 
 bp = Blueprint("user", __name__)
 
@@ -24,7 +24,7 @@ def sign_up():
         username = request.form["username"]
         password = request.form["password"]
         password_confirmation = request.form["password_confirmation"]
-        encrypt_option = request.form["encrypt_option"]
+        option = request.form["encrypt_option"]
 
         db = get_db()
 
@@ -33,8 +33,7 @@ def sign_up():
         elif db.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone():
             flash("Username already exist.", "error")
         else:
-            encrypted_password = encrypt_with_option(password, encrypt_option)
-            encrypted_password = str(binascii.hexlify(encrypted_password))
+            encrypted_password = encrypt_with_option(password, option).decode("latin-1")
             db.execute(
                 "INSERT INTO users (name, username, password, encrypted_password)"
                 "VALUES (?, ?, ?, ?)",
@@ -51,14 +50,13 @@ def sign_in():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        encrypt_option = request.form["encrypt_option"]
+        option = request.form["decrypt_option"]
 
         db = get_db()
         user = db.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone()
         if not user:
             flash("Username does not exist", "error")
-        # encrypt given password to see if it matches stored encrypted password
-        elif user["encrypted_password"] != str(binascii.hexlify(encrypt_with_option(password, encrypt_option))):
+        elif password != str(decrypt_with_option(user['encrypted_password'].encode("latin-1"), option)):
             flash("Incorrect password")
         else:
             flash("Successful sign in", "notice")

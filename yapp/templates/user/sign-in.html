@@ -19,14 +19,14 @@
     </div>
 
     <div class="field">
-        <label for="encrypt_option">
+        <label for="decrypt_option">
           Encrypted by*:
-          <select name="encrypt_option" required>
-              <option value="aes" {{ 'selected' if not request.form['encrypt_option'] or request.form['encrypt_option'] == 'aes' }}>
+          <select name="decrypt_option" required>
+              <option value="aes" {{ 'selected' if not request.form['decrypt_option'] or request.form['decrypt_option'] == 'aes' }}>
                 AES
               </option>
-              <option value="des" {{ 'selected' if request.form['encrypt_option'] == 'des' }}>DES</option>
-              <option value="rsa" {{ 'selected' if request.form['encrypt_option'] == 'rsa' }}>RSA</option>
+              <option value="des" {{ 'selected' if request.form['decrypt_option'] == 'des' }}>DES</option>
+              <option value="rsa" {{ 'selected' if request.form['decrypt_option'] == 'rsa' }}>RSA</option>
           </select>
         </label>
     </div>
