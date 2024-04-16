@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Sign in</h1>
+
+  <form method="post">
+    <div class="field">
+      <label for="username">
+        Username*:
+        <input type="text" name="username" value="{{ request.form['username'] }}" required>
+      </label>
+    </div>
+
+    <div class="field">
+      <label for="password">
+        Password*:
+        <input type="password" name="password" value="{{ request.form['password'] }}" required>
+      </label>
+    </div>
+
+    <div class="field">
+        <label for="encrypt_option">
+          Encrypted by*:
+          <select name="encrypt_option" required>
+              <option value="aes" {{ 'selected' if not request.form['encrypt_option'] or request.form['encrypt_option'] == 'aes' }}>
+                AES
+              </option>
+              <option value="des" {{ 'selected' if request.form['encrypt_option'] == 'des' }}>DES</option>
+              <option value="rsa" {{ 'selected' if request.form['encrypt_option'] == 'rsa' }}>RSA</option>
+          </select>
+        </label>
+    </div>
+
+    <button type="submit">Sign in</button>
+  </form>
+{% endblock %}
