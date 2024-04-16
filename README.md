@@ -13,5 +13,6 @@ Yet Another Python Project in the university.
 5. `echo "export FLASK_APP='yapp'" >> ~/.bashrc`
 6. `echo "export FLASK_ENV='development'" >> ~/.bashrc`
 7. `source .bashrc`
-8. `flask run --debug`
-9. Visit `http://localhost:5000/`.
+8. `flask init-db`
+9. `flask run --debug`
+10. Visit `http://localhost:5000/`.
