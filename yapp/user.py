@@ -17,8 +17,8 @@ def index():
     return render_template("user/index.html", users=users)
 
 
-@bp.route("/create", methods=("GET", "POST"))
-def create():
+@bp.route("/sign-up", methods=("GET", "POST"))
+def sign_up():
     if request.method == "POST":
         name = request.form["name"]
         username = request.form["username"]
