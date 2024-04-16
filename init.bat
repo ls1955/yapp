@@ -1,7 +1,37 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ECHO OFF
 
-// TODO: Setup Python venv and install libraries
+python3 -m venv .venv
+source ./.venv/bin/activate
+pip install -r requirements.txt
+
 set FLASK_APP=yapp
 set FLASK_ENV=development
-flask run --debug
 
+flask init-db
+flask init-keys
+
+flask run --debug
