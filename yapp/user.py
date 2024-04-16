@@ -34,6 +34,7 @@ def create():
                 (name, username, password, password)
             )
             db.commit()
+            flash("Successful created user", "notice")
             return redirect(url_for("index"))
     return render_template("user/create.html")
 
