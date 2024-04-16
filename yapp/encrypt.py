@@ -31,3 +31,11 @@ def init_keys_command():
 def init_app(app):
     app.cli.add_command(init_keys_command)
 
+
+def encrypt_with_option(plaintext, option):
+    return "Goodbye, world."
+
+
+def decrypt_with_option(ciphertext, option):
+    return "Goodbye, world."
+

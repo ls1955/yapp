@@ -4,6 +4,7 @@ from flask import (
 from werkzeug.exceptions import abort
 
 from yapp.db import get_db
+from yapp.encrypt import encrypt_with_option
 
 bp = Blueprint("user", __name__)
 
@@ -31,11 +32,11 @@ def create():
         elif db.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone():
             flash("Username already exist.", "error")
         else:
-            # TODO: Encrypt password according to encrypt option
+            encrypted_password = encrypt_with_option(password, encrypt_option)
             db.execute(
                 "INSERT INTO users (name, username, password, encrypted_password)"
                 "VALUES (?, ?, ?, ?)",
-                (name, username, password, password)
+                (name, username, password, encrypted_password)
             )
             db.commit()
             flash("Successful created user", "notice")
