@@ -57,6 +57,7 @@ def sign_in():
         user = db.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone()
         if not user:
             flash("Username does not exist", "error")
+        # encrypt given password to see if it matches stored encrypted password
         elif user["encrypted_password"] != str(binascii.hexlify(encrypt_with_option(password, encrypt_option))):
             flash("Incorrect password")
         else:
