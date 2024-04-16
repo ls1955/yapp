@@ -57,7 +57,7 @@ def sign_in():
         if not user:
             flash("Username does not exist", "error")
         elif password != str(decrypt_with_option(user['encrypted_password'].encode("latin-1"), option)):
-            flash("Incorrect password")
+            flash("Incorrect password", "error")
         else:
             flash("Successful sign in", "notice")
             return redirect(url_for("index"))
