@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Create user</h1>
+
+  <form method="post">
+    <div class="field">
+        <label for="name">
+            Name:
+            <input type="text" name="name" value="{{ request.form['name'] }}" required>
+        </label>
+    </div>
+
+    <div class="field">
+      <label for="username">
+        Username: 
+        <input type="text" name="username" value="{{ request.form['username'] }}" required>
+      </label>
+    </div>
+
+    <div class="field">
+      <label for="password">
+        Password: 
+        <input type="password" name="password" value="{{ request.form['password'] }}" required>
+      </label>
+    </div>
+
+    <div class="field">
+      <label for="password_confirmation">
+        Password confirmation: 
+        <input
+          type="password"
+          name="password_confirmation"
+          value="{{ request.form['password_confirmation'] }}"
+          required>
+      </label>
+    </div>
+
+    <div class="field">
+        <select name="encrypt_option" required>
+            <option value="aes" selected>AES</option>
+            <option value="des">DES</option>
+            <option value="rsa">RASA</option>
+        </select>
+    </div>
+
+    <button type="submit">Create user</button>
+  </form>
+{% endblock %}
