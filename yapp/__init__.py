@@ -18,14 +18,13 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
-    
-    @app.route("/goodbye")
-    def goodbye():
-        return "Goodbye, world."
-    
 
     from . import db
     db.init_app(app)
+
+    from . import user
+    app.register_blueprint(user.bp)
+    app.add_url_rule("/", endpoint="index")
 
     return app
 
