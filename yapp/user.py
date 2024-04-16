@@ -59,4 +59,8 @@ def sign_in():
             flash("Username does not exist", "error")
         elif user["encrypted_password"] != str(binascii.hexlify(encrypt_with_option(password, decrypt_option))):
             flash("Incorrect password")
-        
+        else:
+            flash("Successful sign in", "notice")
+            return redirect(url_for("index"))
+    return render_template("user/sign-in.html")
+
