@@ -6,9 +6,9 @@ import os
 from Crypto.Random import get_random_bytes
 from Crypto.PublicKey import RSA
 
-from yapp.encryptions.aes import aes_encrypt
-from yapp.encryptions.des import des_encrypt
-from yapp.encryptions.rsa import rsa_encrypt
+from yapp.encryptions.aes import aes_encrypt, aes_decrypt
+from yapp.encryptions.des import des_encrypt, des_decrypt
+from yapp.encryptions.rsa import rsa_encrypt, rsa_decrypt
 
 @click.command("init-keys")
 def init_keys_command():
@@ -43,6 +43,17 @@ def encrypt_with_option(plaintext, option):
         return des_encrypt(plaintext)
     elif option == "rsa":
         return rsa_encrypt(plaintext)
+    else:
+        raise ValueError(f"unknown option: {option}")
+
+
+def decrypt_with_option(ciphertext, option):
+    if option == "aes":
+        return aes_decrypt(ciphertext)
+    elif option == "des":
+        return des_decrypt(ciphertext)
+    elif option == "rsa":
+        return rsa_decrypt(ciphertext)
     else:
         raise ValueError(f"unknown option: {option}")
 
