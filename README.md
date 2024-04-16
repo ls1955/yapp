@@ -16,3 +16,8 @@ Yet Another Python Project in the university.
 8. `flask init-db`
 9. `flask run --debug`
 10. Visit `http://localhost:5000/`.
+
+## TODOs
+
+- Have something like `flask init-encyrption-keys`
+- Automated scripts to measure performance and accuracy
