@@ -35,9 +35,9 @@ def sign_up():
         else:
             encrypted_password = encrypt_with_option(password, option).decode("latin-1")
             db.execute(
-                "INSERT INTO users (name, username, password, encrypted_password)"
-                "VALUES (?, ?, ?, ?)",
-                (name, username, password, encrypted_password)
+                "INSERT INTO users (name, username, password, encrypted_password, encrypted_by)"
+                "VALUES (?, ?, ?, ?, ?)",
+                (name, username, password, encrypted_password, option)
             )
             db.commit()
             flash("Successful created user", "notice")

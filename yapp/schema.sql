@@ -5,5 +5,6 @@ CREATE TABLE users(
     name TEXT NOT NULL,
     username TEXT UNIQUE NOT NULL,
     password TEXT NOT NULL,
-    encrypted_password TEXT NOT NULL
+    encrypted_password TEXT NOT NULL,
+    encrypted_by TEXT NOT NULL
 );
