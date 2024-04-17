@@ -50,13 +50,16 @@ def sign_in():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        option = request.form["decrypt_option"]
 
         db = get_db()
         user = db.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone()
         if not user:
             flash("Username does not exist", "error")
-        elif password != str(decrypt_with_option(user['encrypted_password'].encode("latin-1"), option)):
+            return render_template("user/sign-in.html")
+
+        option = user["encrypted_by"]
+        decrypted_password = str(decrypt_with_option(user["encrypted_password"].encode("latin-1"), option))
+        if password != decrypted_password:
             flash("Incorrect password", "error")
         else:
             flash("Successful sign in", "notice")
