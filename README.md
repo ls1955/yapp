@@ -20,3 +20,5 @@ Yet Another Python Project in the university.
 
 - Automated scripts to measure performance and accuracy
 - Actually signed in user and show user specific content? (Mess with session cookie)
+- Style the website
+- Rewrite encryption functions
