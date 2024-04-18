@@ -13,7 +13,7 @@ Yet Another Python Project in the university.
 ### Window
 
 1. Clone and navigate to this repo.
-2. `./init.bat`
+2. `init.bat`
 3. Visit `http://localhost:5000/`.
 
 ## TODOs
