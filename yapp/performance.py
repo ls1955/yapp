@@ -10,7 +10,7 @@ from encryptions.rsa import rsa_encrypt
 def record_performance(func):
     """
     Records the time taken (in seconds) taken to complete the function.
-    It will append the recorded time into `data/<encryption>_perf.txt`.
+    It will append the recorded time into `perf/<encryption_function_name>.txt`.
     """
     def wrapper(arg):
         init_time = time.time()
