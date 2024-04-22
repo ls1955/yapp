@@ -7,17 +7,17 @@ from encryptions.des import des_encrypt
 from encryptions.rsa import rsa_encrypt
 
 
-def record_performance(func):
+def record_performance(encrypt_function):
     """
     Records the time taken (in seconds) taken to complete the function.
     It will append the recorded time into `perf/<encryption_function_name>.txt`.
     """
-    def wrapper(arg):
+    def wrapper(plaintext):
         init_time = time.time()
-        result = func(arg)
+        result = encrypt_function(plaintext)
         runtime = time.time() - init_time
 
-        write_time_to_file(func, runtime)
+        write_time_to_file(encrypt_function, runtime)
 
         return result
     return wrapper

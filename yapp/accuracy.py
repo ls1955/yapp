@@ -12,11 +12,11 @@ def record_accuracy(encrypt_func, decrypt_func):
     Records the output (Success or Fail) after decrypting password.
     It will append the recorded time into `accuracy/<encryption_function_name>.txt`.
     """
-    def wrapper(arg):
-        encrypted = encrypt_func(arg).decode("latin-1")
+    def wrapper(plaintext):
+        encrypted = encrypt_func(plaintext).decode("latin-1")
         result = str(decrypt_func(encrypted.encode("latin-1")))
 
-        is_success = result == arg
+        is_success = result == plaintext
         write_outcome_to_file(decrypt_func, is_success)
 
         return result
