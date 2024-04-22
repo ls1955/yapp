@@ -1,7 +1,11 @@
+import os
 import os.path as path
 import time
 
 from encryptions.aes import aes_encrypt
+from encryptions.des import des_encrypt
+from encryptions.rsa import rsa_encrypt
+
 
 def record_performance(func):
     """
@@ -13,7 +17,7 @@ def record_performance(func):
         result = func(arg)
         runtime = time.time() - init_time
 
-        write_time_to_file(func.__name__, runtime)
+        write_time_to_file(func, runtime)
 
         return result
     return wrapper
@@ -22,20 +26,39 @@ def record_performance(func):
 base_path = path.dirname(__file__)
 
 
-def write_time_to_file(func_name, runtime):
-    dest = path.abspath(path.join(base_path, "data", f"{func_name}_perf.txt"))
+def write_time_to_file(func, runtime):
+    with open(dest_file(func), "a") as f:
+        # round runtime to 5 decimal place
+        f.write(f"{runtime:.5f}\n")
 
-    with open(dest, "a") as f:
-        f.write(runtime)
-        f.write("\n")
+
+def dest_file(func):
+    return path.abspath(path.join(base_path, "perf", f"{func.__name__}.txt"))
 
 
 if __name__ == "__main__":
     usernames_file = path.abspath(path.join(base_path, "data", "usernames.txt"))
     with open(usernames_file, "r") as f:
         usernames = f.readlines()
-    print(len(usernames))
+    assert usernames, "usernames.txt is empty."
+
     passwords_file = path.abspath(path.join(base_path, "data", "passwords.txt"))
     with open(passwords_file, "r") as f:
         passwords = f.readlines()
-    print(len(passwords))
+    assert passwords, "passwords.txt is empty."
+
+    assert len(usernames) == len(passwords), "usernames and passwords should have same length."
+
+    for func in [aes_encrypt, des_encrypt, rsa_encrypt]:
+        try:
+            os.makedirs(path.abspath(path.join(base_path, "perf")))
+        except OSError:
+            pass
+        # clear previous recorded performance
+        try:
+            os.remove(dest_file(func))
+        except FileNotFoundError:
+            pass
+
+        for password in passwords:
+            record_performance(func)(password)
