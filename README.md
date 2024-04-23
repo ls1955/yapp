@@ -23,15 +23,15 @@ Yet Another Python Project in the university.
 ### Measure performance between encryption functions
 
 ```shell
-python3 yapp/performance.py # record the performances
-python3 yapp/show_performance.py # show performance graph
+py yapp/performance.py # record the performances
+py yapp/show_performance.py # show performance graph
 ```
 
 ### Measure accuracies between descryption functions
 
 ```shell
-python3 yapp/accuracy.py # record the accuracies
-python3 yapp/show_accuracy.py # show accuracy graph
+py yapp/accuracy.py # record the accuracies
+py yapp/show_accuracy.py # show accuracy graph
 ```
 
 ## TODOs
