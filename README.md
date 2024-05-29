@@ -39,3 +39,4 @@ py yapp/show_accuracy.py # show accuracy graph
 - Actually signed in user and show user specific content? (Mess with session cookie)
 - Style the website
 - Rewrite encryption functions
+- Unify encryptions key size
