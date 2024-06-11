@@ -10,6 +10,8 @@
             <tr>
                 {% for user in users %}
                     <tr><td>{{ user["name"] }}</tr>
+                    <tr><td>{{ user["password"] }}</td></tr>
+                    <tr><td>{{ user["encrypted_password"] }}</td></tr>
                 {% endfor %}
             </tr>
         </tbody>

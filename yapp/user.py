@@ -11,7 +11,7 @@ bp = Blueprint("user", __name__)
 @bp.route("/")
 def index():
     db = get_db()
-    users = db.execute("SELECT name FROM users")
+    users = db.execute("SELECT * FROM users")
 
     return render_template("user/index.html", users=users)
 
@@ -32,6 +32,7 @@ def sign_up():
         elif db.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone():
             flash("Username already exist.", "error")
         else:
+            # TODO: Record time at here.
             encrypted_password = encrypt_with_option(password, option).decode("latin-1")
             db.execute(
                 "INSERT INTO users (name, username, password, encrypted_password, encrypted_by)"
