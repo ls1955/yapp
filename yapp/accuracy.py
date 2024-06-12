@@ -2,9 +2,9 @@ import os
 import os.path as path
 import time
 
-from encryptions.aes import aes_encrypt, aes_decrypt
-from encryptions.des import des_encrypt, des_decrypt
-from encryptions.rsa import rsa_encrypt, rsa_decrypt
+from yapp.encryptions.aes import aes_encrypt, aes_decrypt
+from yapp.encryptions.des import des_encrypt, des_decrypt
+from yapp.encryptions.rsa import rsa_encrypt, rsa_decrypt
 
 
 def record_accuracy(encrypt_func, decrypt_func):
