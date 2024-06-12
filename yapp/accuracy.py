@@ -32,7 +32,7 @@ def write_outcome_to_file(func, is_success):
 
 
 def dest_file(func):
-    return path.abspath(path.join(base_path, "accuracy", f"{func.__name__}.txt"))
+    return path.abspath(path.join(base_path, "path", "accuracy", f"{func.__name__}.txt"))
 
 
 if __name__ == "__main__":

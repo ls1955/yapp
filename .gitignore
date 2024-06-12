@@ -14,5 +14,4 @@ build/
 *.egg-info/
 
 yapp/.keys/
-yapp/perf/
-yapp/accuracy/
+yapp/data

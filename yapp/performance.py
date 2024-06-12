@@ -33,7 +33,7 @@ def write_time_to_file(func, runtime):
 
 
 def dest_file(func):
-    return path.abspath(path.join(base_path, "perf", f"{func.__name__}.txt"))
+    return path.abspath(path.join(base_path, "data", "perf", f"{func.__name__}.txt"))
 
 
 if __name__ == "__main__":
