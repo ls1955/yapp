@@ -7,7 +7,6 @@ key_path = path.abspath(path.join(base_path, "..", ".keys", "des-key"))
 
 
 def pad(string):
-    # QUESTION: What is the purpose of this function?
     return string + (8 - len(string) % 8) * chr(8 - len(string) % 8)
 
 
@@ -20,7 +19,6 @@ def des_encrypt(plaintext):
 
 
 def unpad(string):
-    # QUESTION: What is the purpose of this function?
     return string[:-ord(string[len(string) - 1:])]
 
 
