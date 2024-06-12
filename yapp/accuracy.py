@@ -35,6 +35,8 @@ def write_outcome_to_file(func, is_success):
 
 
 def dest_file(func):
+    if isinstance(func, str):
+        return path.abspath(path.join(base_path, "data", "accuracy", f"{func}_decrypt.txt"))
     return path.abspath(path.join(base_path, "data", "accuracy", f"{func.__name__}.txt"))
 
 
