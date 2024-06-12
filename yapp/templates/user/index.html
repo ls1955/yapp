@@ -1,19 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <table>
-        <tr>
-            <th>Users</th>
-        </tr>
-
-        <tbody>
-            <tr>
-                {% for user in users %}
-                    <tr><td>{{ user["name"] }}</tr>
-                    <tr><td>{{ user["password"] }}</td></tr>
-                    <tr><td>{{ user["encrypted_password"] }}</td></tr>
-                {% endfor %}
-            </tr>
-        </tbody>
-    </table>
+<h1 class="users-header">Users List</h1>
+<table class="users-table">
+  <tr>
+    <th>Name</th>
+    <th>Password</th>
+    <th>Encrypted Password</th>
+  </tr>
+  <tbody>
+    {% for user in users %}
+    <tr>
+      <td>{{ user["name"] }}</td>
+      <td>{{ user["password"] }}</td>
+      <td>{{ user["encrypted_password"] }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}

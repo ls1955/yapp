@@ -1,38 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crypto</title>
-  <style>
-    .error {
-      padding: 20px;
-      margin: 5px;
-      color: #970020;
-      background-color: #ffd5de;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crypto</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f41111;
+        margin: 0;
+        padding: 0;
+      }
 
-    .notice {
-      padding: 20px;
-      margin: 5px;
-      color: #ffd5de;
-      background: green;
-    }
-  </style>
-</head>
-<body>
-  <nav>
-    <a href="{{ url_for('index') }}">Homepage</a>
-    <a href="{{ url_for('user.sign_up') }}">Sign up</a>
-    <a href="{{ url_for('user.sign_in') }}">Sign in</a>
-  </nav>
+      nav {
+        background-color: #333;
+        color: #fff;
+        padding: 1em;
+        text-align: center;
+      }
 
-  <main>
-    {% for category, msg in get_flashed_messages(with_categories=True) %}
+      nav a {
+        color: #fff;
+        margin: 0 15px;
+        text-decoration: none;
+      }
+
+      nav a:hover {
+        text-decoration: underline;
+      }
+
+      main {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        border: 2px solid #ddd;
+      }
+
+      .error,
+      .notice {
+        padding: 20px;
+        margin: 5px 0;
+        color: #fff;
+        border-radius: 5px;
+      }
+
+      .error {
+        background-color: #d32f2f;
+        border: 1px solid #b71c1c;
+      }
+
+      .notice {
+        background-color: #4caf50;
+        border: 1px solid #388e3c;
+      }
+
+      .field {
+        margin-bottom: 15px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        color: #333;
+      }
+
+      input[type="text"],
+      input[type="password"],
+      select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
+      button {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #555;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #ff0000;
+        color: white;
+      }
+
+      td {
+        background-color: #f9f9f9;
+      }
+
+      h1 {
+        text-align: center;
+        color: #ff0000;
+      }
+
+      .users-header {
+        text-align: center;
+        color: #4caf50
+      }
+
+      .users-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        border: 2px solid #ddd;
+      }
+
+      .users-table th {
+        background-color: #4caf50;
+        color: white;
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+
+      .users-table td {
+        background-color: #f2f2f2;
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="{{ url_for('index') }}">Homepage</a>
+      <a href="{{ url_for('user.sign_up') }}">Sign up</a>
+      <a href="{{ url_for('user.sign_in') }}">Sign in</a>
+    </nav>
+
+    <main>
+      {% for category, msg in get_flashed_messages(with_categories=True) %}
         <div class="{{ category }}">{{ msg }}</div>
-    {% endfor %}
-
-    {% block content %} {% endblock %}
-  </main>
-</body>
+      {% endfor %} {% block content %} {% endblock %}
+    </main>
+  </body>
 </html>
