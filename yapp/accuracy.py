@@ -27,6 +27,9 @@ base_path = path.dirname(__file__)
 
 
 def write_outcome_to_file(func, is_success):
+    if not os.path.exists(dest_file(func)):
+        with open(dest_file(func), "w") as f:
+            pass
     with open(dest_file(func), "a") as f:
         f.write(f"{'Success' if is_success else 'Fail'}\n")
 
@@ -50,7 +53,7 @@ if __name__ == "__main__":
 
     for encrypt_func, decrypt_func in [(aes_encrypt, aes_decrypt), (des_encrypt, des_decrypt), (rsa_encrypt, rsa_decrypt)]:
         try:
-            os.makedirs(path.abspath(path.join(base_path, "accuracy")))
+            os.makedirs(path.abspath(path.join(base_path, "data", "accuracy")))
         except OSError:
             pass
         # clear previous recorded performance
