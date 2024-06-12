@@ -51,7 +51,7 @@ if __name__ == "__main__":
 
     for func in [aes_encrypt, des_encrypt, rsa_encrypt]:
         try:
-            os.makedirs(path.abspath(path.join(base_path, "perf")))
+            os.makedirs(path.abspath(path.join(base_path, "data", "perf")))
         except OSError:
             pass
         # clear previous recorded performance
