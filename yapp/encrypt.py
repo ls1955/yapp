@@ -16,7 +16,7 @@ def init_keys_command():
         os.makedirs("./yapp/.keys")
     except OSError:
         pass
-    
+
     with open("./yapp/.keys/aes-key", "wb") as f:
         f.write(get_random_bytes(16))
         click.echo("Generated AES key.")
