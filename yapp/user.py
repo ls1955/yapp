@@ -7,6 +7,7 @@ import time
 from yapp.db import get_db
 from yapp.encrypt import encrypt_with_option, decrypt_with_option
 from yapp.performance import write_time_to_file
+from yapp.accuracy import write_outcome_to_file
 
 bp = Blueprint("user", __name__)
 
@@ -64,6 +65,7 @@ def sign_in():
 
         option = user["encrypted_by"]
         decrypted_password = str(decrypt_with_option(user["encrypted_password"].encode("latin-1"), option))
+        write_outcome_to_file(option, password == decrypted_password)
         if password != decrypted_password:
             flash("Incorrect password", "error")
         else:
