@@ -2,9 +2,11 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
 )
 import binascii
+import time
 
 from yapp.db import get_db
 from yapp.encrypt import encrypt_with_option, decrypt_with_option
+from yapp.performance import write_time_to_file
 
 bp = Blueprint("user", __name__)
 
@@ -32,8 +34,11 @@ def sign_up():
         elif db.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone():
             flash("Username already exist.", "error")
         else:
-            # TODO: Record time at here.
+            init_time = time.time()
             encrypted_password = encrypt_with_option(password, option).decode("latin-1")
+            runtime = time.time() - init_time
+            print("Runtime", runtime)
+            write_time_to_file(option, runtime)
             db.execute(
                 "INSERT INTO users (name, username, password, encrypted_password, encrypted_by)"
                 "VALUES (?, ?, ?, ?, ?)",
@@ -65,4 +70,3 @@ def sign_in():
             flash("Successful sign in", "notice")
             return redirect(url_for("index"))
     return render_template("user/sign-in.html")
-
