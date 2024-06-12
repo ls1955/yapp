@@ -2,9 +2,14 @@ import os
 import os.path as path
 import time
 
-from yapp.encryptions.aes import aes_encrypt
-from yapp.encryptions.des import des_encrypt
-from yapp.encryptions.rsa import rsa_encrypt
+try:
+    from encryptions.aes import aes_encrypt
+    from encryptions.des import des_encrypt
+    from encryptions.rsa import rsa_encrypt
+except ModuleNotFoundError:
+    from yapp.encryptions.aes import aes_encrypt
+    from yapp.encryptions.des import des_encrypt
+    from yapp.encryptions.rsa import rsa_encrypt
 
 
 def record_performance(encrypt_function):

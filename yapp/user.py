@@ -9,6 +9,7 @@ from yapp.encrypt import encrypt_with_option, decrypt_with_option
 from yapp.performance import write_time_to_file
 from yapp.accuracy import write_outcome_to_file
 
+
 bp = Blueprint("user", __name__)
 
 @bp.route("/")

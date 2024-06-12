@@ -10,6 +10,7 @@ from yapp.encryptions.aes import aes_encrypt, aes_decrypt
 from yapp.encryptions.des import des_encrypt, des_decrypt
 from yapp.encryptions.rsa import rsa_encrypt, rsa_decrypt
 
+
 @click.command("init-keys")
 def init_keys_command():
     try:
