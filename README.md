@@ -34,8 +34,6 @@ py yapp/accuracy.py # record the accuracies
 py yapp/show_accuracy.py # show accuracy graph
 ```
 
-## TODOs
+## WARNING
+* Remove record automation before submitting source code
 
-- Style the website
-- Rewrite encryption and decryptions functions
-- Unify encryptions key size
