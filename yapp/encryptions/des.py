@@ -28,11 +28,3 @@ def des_decrypt(ciphertext):
         key = f.read()
     decrypter = DES.new(key, DES.MODE_ECB)
     return unpad(decrypter.decrypt(ciphertext).decode())
-
-
-if __name__ == "__main__":
-    plaintext = "Goodbye, world."
-    ciphertext = des_encrypt(plaintext)
-
-    assert plaintext == des_decrypt(ciphertext)
-

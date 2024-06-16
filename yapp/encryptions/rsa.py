@@ -18,11 +18,3 @@ def rsa_decrypt(ciphertext):
         private_key = RSA.import_key(f.read())
     decryptor = PKCS1_OAEP.new(private_key)
     return decryptor.decrypt(ciphertext).decode()
-
-
-if __name__ == "__main__":
-    plaintext = "Goodbye, world."
-    ciphertext = rsa_encrypt(plaintext)
-
-    assert plaintext == rsa_decrypt(ciphertext)
-
