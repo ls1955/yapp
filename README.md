@@ -27,5 +27,5 @@ python yapp/show_performance.py
 ### Show accuracies between descryption functions
 
 ```shell
-py yapp/show_accuracy.py
+python yapp/show_accuracy.py
 ```
