@@ -37,14 +37,14 @@ def sign_up():
             flash("Username already exist.", "error")
         else:
             init_time = time.time()
-            encrypted_password = encrypt_with_option(password, option).decode("latin-1")
+            encrypted = encrypt_with_option(password, option)
+            encoded = binascii.b2a_base64(encrypted)
             runtime = time.time() - init_time
-            print("Runtime", runtime)
             write_time_to_file(option, runtime)
             db.execute(
                 "INSERT INTO users (name, username, password, encrypted_password, encrypted_by)"
                 "VALUES (?, ?, ?, ?, ?)",
-                (name, username, password, encrypted_password, option)
+                (name, username, password, encoded, option)
             )
             db.commit()
             flash("Successful created user", "notice")
@@ -65,9 +65,10 @@ def sign_in():
             return render_template("user/sign-in.html")
 
         option = user["encrypted_by"]
-        decrypted_password = str(decrypt_with_option(user["encrypted_password"].encode("latin-1"), option))
-        write_outcome_to_file(option, password == decrypted_password)
-        if password != decrypted_password:
+        decoded = binascii.a2b_base64(user["encrypted_password"])
+        decrypted = str(decrypt_with_option(decoded, option))
+        write_outcome_to_file(option, password == decrypted)
+        if password != decrypted:
             flash("Incorrect password", "error")
         else:
             flash("Successful sign in", "notice")
